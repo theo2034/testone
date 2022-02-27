@@ -3,3 +3,4 @@
 # pod install
 # cd ..
 # yarn ios OR yarn android
+# yarn test
