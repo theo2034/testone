@@ -1,6 +1,5 @@
-# testone
-yarn
-cd ios
-pod install
-cd ..
-yarn ios OR yarn android
+# yarn
+# cd ios
+# pod install
+# cd ..
+# yarn ios OR yarn android
