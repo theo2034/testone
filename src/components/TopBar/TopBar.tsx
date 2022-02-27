@@ -68,7 +68,7 @@ const TopBar: React.VFC<TopBarProps> = ({
 
   return (
     <TopBarWrapper>
-      {header && <TopBarHeader testID='TopBarHeader'>{header}</TopBarHeader>}
+      {header && <TopBarHeader testID="TopBarHeader">{header}</TopBarHeader>}
       {exp && <>{Boolean(title || subtitle) && getTitle()}</>}
     </TopBarWrapper>
   );

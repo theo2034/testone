@@ -37,10 +37,9 @@ jest.mock('./components/TopBar', () => ({ TopBar: () => 'TopBar' }));
 test('<App />', async () => {
   getRestaurantsMock();
 
-  const { debug } = render(<App {...props} />);
+  render(<App {...props} />);
 
   await waitFor(() => {
-    debug();
     expect(getRestaurantsMock).toHaveBeenCalledTimes(1);
   });
 });
