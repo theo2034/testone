@@ -9,8 +9,8 @@ import {
   TopBarTitleWrapper,
 } from './TopBar.styles';
 
-type TopBarProps = {
-  header?: any;
+export type TopBarProps = {
+  header?: React.ReactNode;
   title?: string;
   subtitle?: string;
   expanded?: boolean;
@@ -26,13 +26,13 @@ const TopBar: React.VFC<TopBarProps> = ({
     return (
       <TopBarTextWrapper>
         {subtitle && (
-          <TopBarSubTitle element="Eyebrow" numberOfLines={1}>
+          <TopBarSubTitle testID={subtitle} element="Eyebrow" numberOfLines={1}>
             {subtitle}
           </TopBarSubTitle>
         )}
         {title && (
           <TopBarTitleWrapper>
-            <TopBarTitle element="HeadingL" numberOfLines={1}>
+            <TopBarTitle testID={title} element="HeadingL" numberOfLines={1}>
               {title}
             </TopBarTitle>
           </TopBarTitleWrapper>
@@ -68,7 +68,7 @@ const TopBar: React.VFC<TopBarProps> = ({
 
   return (
     <TopBarWrapper>
-      {header && <TopBarHeader>{header}</TopBarHeader>}
+      {header && <TopBarHeader testID='TopBarHeader'>{header}</TopBarHeader>}
       {exp && <>{Boolean(title || subtitle) && getTitle()}</>}
     </TopBarWrapper>
   );

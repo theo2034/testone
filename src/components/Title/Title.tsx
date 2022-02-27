@@ -1,10 +1,11 @@
 import React from 'react';
 import { Eyebrow, HeadingS, HeadingL, TitleM } from './Title.styles';
 
-type TitleProps = {
+export type TitleProps = {
   children: React.ReactNode;
   numberOfLines?: number;
   element?: string;
+  testID?: string;
 };
 
 const TITLE_VARIATION = {
@@ -31,6 +32,7 @@ const Title: React.FC<TitleProps> = ({
   element = 'HeadingS',
   numberOfLines,
   children,
+  testID,
 }) => {
   const Component = getElementComponent(element);
 
@@ -39,6 +41,7 @@ const Title: React.FC<TitleProps> = ({
       {...(numberOfLines && { numberOfLines: numberOfLines })}
       ellipsizeMode="tail"
       accessible={true}
+      testID={testID}
       accessibilityRole="text">
       {children}
     </Component>

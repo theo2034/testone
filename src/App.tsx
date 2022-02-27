@@ -7,7 +7,7 @@ import { List as ListLayout } from './layouts';
 import { TopBar, TopBarHeader, Restaurant, Title } from './components';
 import {
   getRestaurants,
-  GetRestaurantsResponse,
+  TransformedGetRestaurantsResponse,
   RestaurantType,
 } from './services/restaurant-api';
 import theme from './theme';
@@ -19,7 +19,7 @@ import {
   ButtonWrapper,
 } from './App.styles';
 
-type AppProps = {
+export type AppProps = {
   rootTag: string;
   version: string;
 };
@@ -36,7 +36,7 @@ const App: React.VFC<AppProps> = props => {
     : props.version;
   const [expanded, setExpanded] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<GetRestaurantsResponse>();
+  const [data, setData] = useState<TransformedGetRestaurantsResponse>();
   const flatListRef = useRef<any>();
   const toTop = () => {
     flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 });
@@ -72,7 +72,7 @@ const App: React.VFC<AppProps> = props => {
           <FlatListContainer>
             {loading ? (
               <>
-                <Title>Skeleton loading...</Title>
+                <Title testID="Loading">Skeleton loading...</Title>
                 <Title>Skeleton loading...</Title>
                 <Title>Skeleton loading...</Title>
                 <Title>Skeleton loading...</Title>

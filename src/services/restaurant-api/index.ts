@@ -1,9 +1,14 @@
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { GetRestaurantsResponse, RestaurantType } from './types';
+import {
+  GetRestaurantsResponse,
+  RestaurantType,
+  Restaurant,
+  TransformedGetRestaurantsResponse,
+} from './types';
 
 const getRestaurants = async (): Promise<
-  GetRestaurantsResponse | undefined
+  TransformedGetRestaurantsResponse | undefined
 > => {
   const response = await fetch(
     'https://storage.googleapis.com/nandos-engineering-public/coding-challenge-rn/restaurantlist.json',
@@ -11,9 +16,7 @@ const getRestaurants = async (): Promise<
 
   try {
     const results = await response.json();
-    const transformedResults = transformRestaurants(
-      results.data.restaurant.items,
-    );
+    const transformedResults = transformRestaurants(results);
 
     return transformedResults;
   } catch (error) {
@@ -21,8 +24,10 @@ const getRestaurants = async (): Promise<
   }
 };
 
-const transformRestaurants = (data: RestaurantType[]) => {
-  return data.map((item: RestaurantType) => {
+const transformRestaurants = (
+  response: GetRestaurantsResponse,
+): TransformedGetRestaurantsResponse => {
+  return response.data.restaurant.items.map((item: Restaurant) => {
     return {
       ...item,
       id: uuidv4() as string,
@@ -30,5 +35,5 @@ const transformRestaurants = (data: RestaurantType[]) => {
   });
 };
 
-export { getRestaurants };
-export type { RestaurantType, GetRestaurantsResponse };
+export { getRestaurants, transformRestaurants };
+export type { RestaurantType, TransformedGetRestaurantsResponse };

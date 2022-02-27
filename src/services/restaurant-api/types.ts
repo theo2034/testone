@@ -16,5 +16,19 @@ type Address = {
   streetAddress: string;
 };
 
-type GetRestaurantsResponse = RestaurantType[];
-export type { RestaurantType, Geo, Address, GetRestaurantsResponse };
+type GetRestaurantsResponse = {
+  data: {
+    restaurant: {
+      items: Restaurant[];
+    };
+  };
+};
+type TransformedGetRestaurantsResponse = RestaurantType[];
+export type {
+  RestaurantType,
+  Geo,
+  Address,
+  GetRestaurantsResponse,
+  TransformedGetRestaurantsResponse,
+  Restaurant,
+};
