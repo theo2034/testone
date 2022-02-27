@@ -5,7 +5,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { List as ListLayout } from './layouts';
 import { TopBar, TopBarHeader, Restaurant, Title } from './components';
-import { getRestaurants, RestaurantType } from './services/restaurant-api';
+import {
+  getRestaurants,
+  GetRestaurantsResponse,
+  RestaurantType,
+} from './services/restaurant-api';
 import theme from './theme';
 import VersionModule from '../VersionModuleAndroid';
 import {
@@ -32,7 +36,7 @@ const App: React.VFC<AppProps> = props => {
     : props.version;
   const [expanded, setExpanded] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<null | RestaurantType[]>(null);
+  const [data, setData] = useState<GetRestaurantsResponse>();
   const flatListRef = useRef<any>();
   const toTop = () => {
     flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 });
